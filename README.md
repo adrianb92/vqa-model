@@ -21,8 +21,7 @@ my_project/
 ├── training/
 │   └── train.py                  # Training and validation logic
 ├── main.py                       # Main entry point of the project
-├── requirements.txt              # Dependencies
-└── utils.py                      # Utility/helper functions (optional)
+└── requirements.txt              # Dependencies
 ```
 
 ### Key Components:
@@ -138,10 +137,6 @@ To modify these, simply update the configuration section in the `main.py` file.
 - **Model Architecture Enhancements**: Consider testing other model architectures or improving the current one with additional features like attention mechanisms.
 - **Data Augmentation**: Implement data augmentation techniques to improve generalization.
 - **Deployment**: Package the model for deployment in a production environment, such as serving via a REST API.
-
-## Contributing
-
-Contributions are welcome! Please feel free to open an issue or submit a pull request with any improvements, bug fixes, or new features.
 
 ## License
 
