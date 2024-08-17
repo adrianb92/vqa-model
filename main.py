@@ -3,10 +3,11 @@ from torch.utils.data import DataLoader
 from torch import nn, optim
 from transformers import DistilBertTokenizer
 import wandb
-from dataset import VQADataset, collate_fn
-from data_loading import load_datasets
-from model import VQAModel
-from train import train_epoch, validate
+from torchvision import transforms
+from data.data_loading import load_datasets
+from datasets.dataset import VQADataset, collate_fn
+from models.model import VQAModel
+from training.train import train_epoch, validate
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
