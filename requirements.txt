@@ -1,0 +1,9 @@
+transformers
+datasets
+torch
+torchvision
+timm
+wandb
+scikit-learn
+numpy
+Pillow
