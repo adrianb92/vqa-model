@@ -94,8 +94,8 @@ pip install -r requirements.txt
    ```bash
    python main.py
    ```
-
-This will handle everything from data loading to model training and logging the results.
+   
+  This will handle everything from data loading to model training and logging the results.
 
 4. **Test the Model with a Custom Image and Question**:
 
