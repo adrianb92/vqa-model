@@ -4,14 +4,14 @@
 
 This project implements a Visual Question Answering (VQA) system using PyTorch. The model combines text and image inputs to answer questions about images. It leverages pre-trained models such as DistilBERT for text encoding and ResNet50 for image encoding. The project also uses the Hugging Face `transformers` library for natural language processing and `timm` for the image model.
 
-The project is modular and organized into various components for data loading, model definition, training, and validation.
+The project is modular and organized into various components for data loading, model definition, training, validation and testing.
 
 ## Project Structure
 
 The project is organized as follows:
 
 ```
-my_project/
+vqa-model/
 ├── data/
 │   └── data_loading.py           # Data loading scripts
 ├── datasets/
@@ -20,6 +20,8 @@ my_project/
 │   └── model.py                  # Model architecture files
 ├── training/
 │   └── train.py                  # Training and validation logic
+├── testing/
+│   └── test.py                   # Script for testing the model with custom image and question
 ├── main.py                       # Main entry point of the project
 └── requirements.txt              # Dependencies
 ```
@@ -38,14 +40,14 @@ my_project/
 - **`training/`**
   - `train.py`: Contains the training and validation loops, as well as functions for calculating precision and recall metrics.
 
+- **`testing/`**
+   - `test.py`: Script for testing the model with a custom image and question provided via command-line arguments. This script loads the pre-trained model and dynamically retrieves the possible answers from the dataset, allowing the model to select the best answer based on its training.
+
 - **`main.py`**
   - The main script that ties everything together, handling data loading, model initialization, training, validation, and logging with `WandB`.
 
 - **`requirements.txt`**
   - Lists the necessary Python packages to run the project.
-
-- **`utils.py`**
-  - Placeholder for any utility/helper functions that may be needed across multiple modules.
 
 ## Getting Started
 
@@ -73,8 +75,8 @@ pip install -r requirements.txt
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-repository/vqa-project.git
-   cd vqa-project
+   git clone https://github.com/adrianb92/vqa-model.git
+   cd vqa-model
    ```
 
 2. **Install dependencies**:
@@ -85,19 +87,33 @@ pip install -r requirements.txt
    pip install -r requirements.txt
    ```
 
-3. **Run the project**:
+3. **Train the Model**:
 
-   The main script `main.py` orchestrates the entire pipeline from data loading to training and validation. Run the script as follows:
+   You can train the model using the `main.py` script:
 
    ```bash
    python main.py
    ```
 
-4. **Tracking with WandB**:
+This will handle everything from data loading to model training and logging the results.
+
+4. **Test the Model with a Custom Image and Question**:
+
+   Once the model is trained, you can test it on a custom image and question using the `test.py` script located in the `testing/` folder. This script will load the trained model and dynamically retrieve the possible answers from the dataset.
+
+   To run the script:
+
+   ```bash
+   python testing/test.py --image path/to/your/image.jpg --question "What is in the picture?"
+   ```
+
+   This will print the most likely answer predicted by the model based on the learned possible answers from the training data.
+
+5. **Tracking with WandB**:
 
    The project uses `WandB` for experiment tracking. You need to set up a `WandB` account and authenticate using your API key. You can initialize a new project on `WandB` by simply running the `main.py` script, and the logging will be automatically handled.
 
-5. **Model Checkpoints**:
+6. **Model Checkpoints**:
 
    After training, the model will be saved as `model_v2.pth`. This file can be logged and saved as an artifact using `WandB`.
 
@@ -125,10 +141,13 @@ To modify these, simply update the configuration section in the `main.py` file.
 4. **Training and Validation**:
    - The `train.py` script handles training and validation, including calculating metrics like precision and recall.
 
-5. **Experiment Logging**:
+5. **Testing**:
+   - The `test.py` script allows you to test the trained model with custom images and questions, printing the most likely answer.
+
+6. **Experiment Logging**:
    - The project integrates with `WandB` for logging and tracking metrics during training and validation.
 
-6. **Model Saving**:
+7. **Model Saving**:
    - After training, the model is saved and logged as an artifact.
 
 ## Future Work
